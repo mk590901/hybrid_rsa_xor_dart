@@ -20,7 +20,7 @@ class RSAPrivateKey {
   }
 
   String toJsonString() {
-    return '{"id":"$keyId","modulus":"${modulus.toString()}","exponent":"${exponent.toString()}","fp":"${p.toString()}","sp":"${q.toString()}"}';
+    return '{"id":"$keyId","modulus":${modulus.toString()},"exponent":${exponent.toString()},"fp":${p.toString()},"sp":${q.toString()}}';
   }
 
   factory RSAPrivateKey.fromJsonString(String jsonString) {
@@ -45,7 +45,7 @@ class RSAPublicKey {
 
   // Convert RSAPublicKey to JSON string
   String toJsonString() {
-    return '{"id":"$keyId","modulus":"${modulus.toString()}","exponent":"${exponent.toString()}"}';
+    return '{"id":"$keyId","modulus":${modulus.toString()},"exponent":${exponent.toString()}}';
   }
 
   // Constructor to create RSAPublicKey from JSON string

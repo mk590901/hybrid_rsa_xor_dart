@@ -20,5 +20,5 @@ class XorPacket {
             .map((str) => BigInt.parse(str as String))
             .toList(),
         encryptedKeyId = jsonDecode(jsonString)['id'],
-        encryptedText = jsonDecode(jsonString)['encryptedText'];
+        encryptedText = jsonDecode(jsonString)['encrypted_text'];
 }

@@ -8,6 +8,7 @@ import 'xor_helper.dart';
 import 'xor_client.dart';
 import 'xor_server.dart';
 import 'xor_packet.dart';
+import 'package:uuid/uuid.dart';
 
 // Convert BigInt to Uint8List of exactly 8 bytes (64 bits, big-endian)
 Uint8List bigIntTo8Bytes(BigInt bigInt) {
@@ -181,17 +182,33 @@ void testDartServerToitClient() {
   print ("public->[${rsaHelper.publicKey().toString()}] private->[${rsaHelper.privateKey().toStringFull()}]");
 
   RSAPublicKey publicKey = rsaHelper.publicKey();
-  String json_PBK_string = publicKey.toJsonString();
-  print ("PUBLIC  json->[$json_PBK_string]");
+  String jsonPbkString = publicKey.toJsonString();
+  print ("PUBLIC  json->[$jsonPbkString]");
 
   RSAPrivateKey privateKey = rsaHelper.privateKey();
-  String json_PRK_string = privateKey.toJsonString();
-  print ("PRIVATE json->[$json_PRK_string]");
+  String jsonPrkString = privateKey.toJsonString();
+  print ("PRIVATE json->[$jsonPrkString]");
+
+
+
 
 }
 
 void testRestoreToitPacket() {
   print ("test Restore Toit Packet");
+
+  String privateKeyJson = '{"id":"64295ecc-8d4a-49ad-baf9-d685da815b47","modulus":4051973,"exponent":2497193,"fp":1999,"sp":2027}';
+  RSAPrivateKey privateKey = RSAPrivateKey.fromJsonString(privateKeyJson);
+  print ("PRIVATE key->[${privateKey.toStringFull()}]");
+
+  String packetToitJson = '{"encrypted_key":["1258541","1012384","1046396","1625468","2219939","1169986","691187","3827649","3876797","2227773","1403681","3251762","2041119","2227773","847309","3525653","2029737","847309","2245548","3870663","3870663","1350053","826471","1144420","3917639","3641382","277333","2245548","1340869","3008309","2993555","1144420"],"id":"64295ecc-8d4a-49ad-baf9-d685da815b47","encrypted_text":"BT0rXxI5MEESZDQAVGRZFyFQQBkDK0NnDE1OX1pDMTMpKiYfRy8hVBsxKBsOIRwOLkhQGAQ8Ui4HShEVQ0I1LiMkJBMJJTcaEjUuGw4lUAosX1A="}';
+  XorServer xorServer = XorServer();
+  xorServer.setKey(privateKey);
+  XorPacket packetToit = XorPacket.fromJsonString(packetToitJson);
+  String? restoreToitText = xorServer.decrypt(packetToit);
+  print ("restoreToitText->\n[$restoreToitText]");
+
+
 }
 
 
