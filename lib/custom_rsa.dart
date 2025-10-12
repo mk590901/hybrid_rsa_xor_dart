@@ -159,4 +159,42 @@ void testXorClientServer() {
 
 }
 
+void testXorClient() {
+
+  String sourceText = "The XOR Encryption algorithm";
+
+  String jsonPUKey = "{\"id\":\"810adcb7-1fe2-2783-b1e6-9ba9a4a38ea5\",\"modulus\":4051973,\"exponent\":65537}";
+  RSAPublicKey publicKey = RSAPublicKey.fromJsonString(jsonPUKey);
+  print ("publicKey->[${publicKey.toString()}]");
+
+  XorClient xorClient = XorClient();
+  xorClient.setKey(publicKey);
+  XorPacket packet = xorClient.encrypt(sourceText);
+  print ("packet->\n${packet.toJsonString()}");
+
+}
+
+void testDartServerToitClient() {
+  print ("test Dart Server -> Toit Client");
+
+  RSAHelper rsaHelper = RSAHelper();
+  print ("public->[${rsaHelper.publicKey().toString()}] private->[${rsaHelper.privateKey().toStringFull()}]");
+
+  RSAPublicKey publicKey = rsaHelper.publicKey();
+  String json_PBK_string = publicKey.toJsonString();
+  print ("PUBLIC  json->[$json_PBK_string]");
+
+  RSAPrivateKey privateKey = rsaHelper.privateKey();
+  String json_PRK_string = privateKey.toJsonString();
+  print ("PRIVATE json->[$json_PRK_string]");
+
+}
+
+void testRestoreToitPacket() {
+  print ("test Restore Toit Packet");
+}
+
+
+
+
 

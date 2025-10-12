@@ -5,5 +5,8 @@ String run() {
   testXorCipher();
   testXorHelper();
   testXorClientServer();
+  testXorClient();
+  testDartServerToitClient();
+  testRestoreToitPacket();
   return "ok";
 }

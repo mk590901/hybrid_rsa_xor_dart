@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:uuid/uuid.dart';
+
 import 'crypto_utils.dart';
 
 class RSAHelper {
@@ -37,7 +38,8 @@ class RSAHelper {
     BigInt d = e.modInverse(phi);
 
     // Creating keys with enabled modulus
-    String keyId = Uuid().v4.toString();
+    Uuid uuid = Uuid();
+    String keyId = uuid.v4.toString();
     RSAPublicKey publicKey = RSAPublicKey(n, e, keyId);
     RSAPrivateKey privateKey = RSAPrivateKey(n, d, BigInt.from(p), BigInt.from(q), keyId);
 
