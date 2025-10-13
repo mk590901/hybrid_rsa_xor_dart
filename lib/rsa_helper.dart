@@ -1,13 +1,21 @@
 import 'dart:math';
 import 'package:uuid/uuid.dart';
 import 'crypto_utils.dart';
+import 'primes_generator.dart';
 
 class RSAHelper {
-  final int p = 1999;  // Prime number
-  final int q = 2027;  // Prime number
+  // final int p = 1999;  // Prime number
+  // final int q = 2027;  // Prime number
+
+  late int p;  // Prime number
+  late int q;  // Prime number
+
   late RSAKeyPair keyPair;
 
   RSAHelper () {
+    List<int> list = getTwoRandomDistinctNumbers();
+    p = list[0];
+    q = list[1];
     keyPair = generateKeyPair(p, q);
   }
 

@@ -8,7 +8,7 @@ import 'xor_helper.dart';
 import 'xor_client.dart';
 import 'xor_server.dart';
 import 'xor_packet.dart';
-import 'package:uuid/uuid.dart';
+import 'primes_generator.dart';
 
 // Convert BigInt to Uint8List of exactly 8 bytes (64 bits, big-endian)
 Uint8List bigIntTo8Bytes(BigInt bigInt) {
@@ -176,7 +176,7 @@ void testXorClient() {
 }
 
 void testDartServerToitClient() {
-  print ("test Dart Server -> Toit Client");
+  print ("******* test Dart Server -> Toit Client *******");
 
   RSAHelper rsaHelper = RSAHelper();
   print ("public->[${rsaHelper.publicKey().toString()}] private->[${rsaHelper.privateKey().toStringFull()}]");
@@ -189,7 +189,17 @@ void testDartServerToitClient() {
   String jsonPrkString = privateKey.toJsonString();
   print ("PRIVATE json->[$jsonPrkString]");
 
+  String sourceText = "The XOR Encryption algorithm is a very effective yet easy to implement method of symmetric encryption. Due to its effectiveness and simplicity, the XOR Encryption is an extremely common component used in more complex encryption algorithms used nowadays. The XOR encryption algorithm is an example of symmetric encryption where the same key is used to both encrypt and decrypt a message.";
 
+  XorClient xorClient = XorClient();
+  xorClient.setKey(publicKey);
+  XorPacket packet = xorClient.encrypt(sourceText);
+  print ("packet->\n${packet.toJsonString()}");
+
+  XorServer xorServer = XorServer();
+  xorServer.setKey(privateKey);
+  String? restoreText = xorServer.decrypt(packet);
+  print ("restoreText->\n[$restoreText]");
 
 
 }
@@ -210,7 +220,6 @@ void testRestoreToitPacket() {
 
 
 }
-
 
 
 
