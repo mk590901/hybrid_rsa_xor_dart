@@ -8,7 +8,6 @@ import 'xor_helper.dart';
 import 'xor_client.dart';
 import 'xor_server.dart';
 import 'xor_packet.dart';
-import 'primes_generator.dart';
 
 // Convert BigInt to Uint8List of exactly 8 bytes (64 bits, big-endian)
 Uint8List bigIntTo8Bytes(BigInt bigInt) {

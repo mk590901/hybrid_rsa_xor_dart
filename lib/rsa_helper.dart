@@ -4,8 +4,6 @@ import 'crypto_utils.dart';
 import 'primes_generator.dart';
 
 class RSAHelper {
-  // final int p = 1999;  // Prime number
-  // final int q = 2027;  // Prime number
 
   late int p;  // Prime number
   late int q;  // Prime number

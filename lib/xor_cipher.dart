@@ -51,9 +51,8 @@ class XorCipher {
 
 void testXorCipher() {
   // Example usage
-  //const plaintext = 'Hello, this is a secret message!';
   String plaintext = "The XOR Encryption algorithm is a very effective yet easy to implement method of symmetric encryption. Due to its effectiveness and simplicity, the XOR Encryption is an extremely common component used in more complex encryption algorithms used nowadays. The XOR encryption algorithm is an example of symmetric encryption where the same key is used to both encrypt and decrypt a message.";
-  const key = '12345678901234567890123456789012'; //'mysecretkey';
+  const key = '12345678901234567890123456789012';
 
   try {
     // Encrypt
