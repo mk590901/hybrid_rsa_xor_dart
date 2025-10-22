@@ -17,11 +17,22 @@ class XorPacket {
     return jsonEncode(jsonMap);
   }
 
-  XorPacket.fromJsonString(String jsonString) :
-        encryptedKey    = (jsonDecode(jsonString)['encrypted_key'] as List)
-            .map((str) => BigInt.parse(str as String))
-            .toList(),
-        encryptedKeyId  = jsonDecode(jsonString)['id'],
-        sink            = jsonDecode(jsonString)['sink']?? '?sink',
-        encryptedText   = jsonDecode(jsonString)['encrypted_text'];
+  XorPacket.fromJsonString(String jsonString)
+      : this._fromJsonMap(jsonDecode(jsonString));
+
+  XorPacket._fromJsonMap(Map<String, dynamic> decoded)
+      : encryptedKey    = (decoded['encrypted_key'] as List)
+      .map((str) => BigInt.parse(str as String))
+      .toList(),
+        encryptedKeyId  = decoded['id'] as String,
+        sink            = decoded['sink'] as String? ?? '?sink',
+        encryptedText   = decoded['encrypted_text'] as String;
+
+  // XorPacket.fromJsonString(String jsonString) :
+  //       encryptedKey    = (jsonDecode(jsonString)['encrypted_key'] as List)
+  //           .map((str) => BigInt.parse(str as String))
+  //           .toList(),
+  //       encryptedKeyId  = jsonDecode(jsonString)['id'],
+  //       sink            = jsonDecode(jsonString)['sink']?? '?sink',
+  //       encryptedText   = jsonDecode(jsonString)['encrypted_text'];
 }
