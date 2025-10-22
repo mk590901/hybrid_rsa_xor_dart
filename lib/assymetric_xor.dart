@@ -10,5 +10,6 @@ String run() {
   testDartServerToitClient();
   testRestoreToitPacket();
   testPrimes();
+  testDeserialization();
   return "ok";
 }

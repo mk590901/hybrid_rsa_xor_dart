@@ -220,6 +220,13 @@ void testRestoreToitPacket() {
 
 }
 
+void testDeserialization() {
+  print ("test Deserialization");
+
+  String inpJsonString = '{"dev_id":"Android Device","type":"pubk","id":"a333a2a6-1eb8-4f23-2c47-cb9e1e978cf7","modulus":5275091,"exponent":65537}';
+  RSAPublicKey publicKey = RSAPublicKey.fromJsonString(inpJsonString);
+  print ('publicKey->${publicKey.toString()}');
+}
 
 
 
