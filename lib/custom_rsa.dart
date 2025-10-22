@@ -144,7 +144,7 @@ void testXorClientServer() {
 
   XorClient xorClient = XorClient();
   xorClient.setKey(publicKey);
-  XorPacket packet = xorClient.encrypt(sourceText);
+  XorPacket packet = xorClient.encrypt('sink', sourceText);
   print ("packet->\n${packet.toJsonString()}");
 
 //  Restore
@@ -169,7 +169,7 @@ void testXorClient() {
 
   XorClient xorClient = XorClient();
   xorClient.setKey(publicKey);
-  XorPacket packet = xorClient.encrypt(sourceText);
+  XorPacket packet = xorClient.encrypt('sink', sourceText);
   print ("packet->\n${packet.toJsonString()}");
 
 }
@@ -192,7 +192,7 @@ void testDartServerToitClient() {
 
   XorClient xorClient = XorClient();
   xorClient.setKey(publicKey);
-  XorPacket packet = xorClient.encrypt(sourceText);
+  XorPacket packet = xorClient.encrypt('sink', sourceText);
   print ("packet->\n${packet.toJsonString()}");
 
   XorServer xorServer = XorServer();

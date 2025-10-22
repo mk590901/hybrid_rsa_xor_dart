@@ -11,10 +11,10 @@ class XorClient {
     encryptor.setKey(publicKey);
   }
 
-  XorPacket encrypt(String text) {
+  XorPacket encrypt(String sink, String text) {
     final String key = xorHelper.key();
     List<BigInt> encryptedKey = encryptor.encrypt(key);
-    return XorPacket(encryptedKey, xorHelper.encrypt(text, key)?? "", encryptor.publicKey.keyId);
+    return XorPacket(sink, encryptedKey, xorHelper.encrypt(text, key)?? "", encryptor.publicKey.keyId);
   }
 
 }
