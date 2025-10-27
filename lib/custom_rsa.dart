@@ -228,5 +228,19 @@ void testDeserialization() {
   print ('publicKey->${publicKey.toString()}');
 }
 
+void restoreToitPacket() {
+
+  print ("******* restore Toit Packet *******");
+
+  String packetToitJson = "{\"encrypted_key\":[\"595309\",\"4676747\",\"3173928\",\"1657668\",\"3304993\",\"2502677\",\"3539000\",\"2261486\",\"2400375\",\"50132\",\"3173928\",\"2261486\",\"4827952\",\"3335475\",\"3572884\",\"1558651\",\"720546\",\"1779631\",\"1071024\",\"2855886\",\"1997846\",\"2363893\",\"1071024\",\"2746100\",\"1670024\",\"3492599\",\"2269942\",\"4159927\",\"1076118\",\"4425087\",\"2045573\",\"595309\"],\"id\":\"fe664566-d145-46fd-9b74-12eb7c9078ee\",\"sink\":\"lge LM-G810\",\"encrypted_text\":\"NGMEQEIxRgYvXmpVVgkMFFILQR9xM3JLY3dZBxpKVGNvbHkeFX4CWGkSZE0gLwAIUBhSEigCVkV5fVoYBkpBjf8CagMDB1sBJBAbHxEvCVoPSAJQc0MDRygyQ14WVkMcOjMuTkI1Ej8yVTscATgIWg9IC1FlXgRXY3cEZlVTQ2NtEy1DQCRbGSUQABoZIwkRQRMRXH9EAElzb0wTFlZDHz0kK0ZROUYONFknAVZwT0gbWgNGMB0RGg==\"}";
+  String jsonPrivateKey = "{\"id\":\"fe664566-d145-46fd-9b74-12eb7c9078ee\",\"modulus\":4881311,\"exponent\":3630065,\"fp\":2437,\"sp\":2003}";
+  RSAPrivateKey privateKey = RSAPrivateKey.fromJsonString(jsonPrivateKey);
+  XorServer xorServer = XorServer();
+  xorServer.setKey(privateKey);
+  XorPacket packetToit = XorPacket.fromJsonString(packetToitJson);
+  String? restoreToitText = xorServer.decrypt(packetToit);
+  print ("restoreToitText->\n[$restoreToitText]");
+}
+
 
 

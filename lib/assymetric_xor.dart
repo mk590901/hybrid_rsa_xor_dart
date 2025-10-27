@@ -11,5 +11,6 @@ String run() {
   testRestoreToitPacket();
   testPrimes();
   testDeserialization();
+  restoreToitPacket();
   return "ok";
 }
