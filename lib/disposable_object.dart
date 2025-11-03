@@ -1,44 +1,43 @@
 class DisposableObject {
-  // Пример полей: какие-то ресурсы
   String? _data;
   bool    _isDisposed = false;
   int     _counter = 0;
 
   DisposableObject(this._data) {
-    print('Объект создан с данными: $_data');
+    print('Object created with data: $_data');
   }
 
-  // Метод, который проверяет условие и решает, нужно ли уничтожить объект
+  // Check delete condition
   void checkAndDisposeIfNeeded(bool shouldDispose) {
     if (shouldDispose) {
-      print('Обнаружена необходимость удаления. Вызываем dispose()...');
+      print('Need to delete. Call dispose()...');
       dispose();
     } else {
-      print('Условие не выполнено. Объект продолжает работать.');
+      print('Continue work.');
     }
   }
 
-  // Метод dispose для "уничтожения" объекта
+  // Method dispose for "destroying" object
   void dispose() {
     if (_isDisposed) {
-      print('Объект уже уничтожен.');
+      print('Object already destroyed.');
       return;
     }
 
-    // Освобождаем ресурсы
+    // Free resources
     _data = null;
     _isDisposed = true;
 
-    // Здесь можно добавить логику очистки: закрыть файлы, отменить таймеры и т.д.
-    print('Объект уничтожен: ресурсы освобождены.');
+    // Add destroying logic: free resources, close files & etc.
+    print('Object has been destroyed');
   }
 
-  // Пример другого метода, который проверяет, уничтожен ли объект
+  // Sample of method checks need to destroy object or no
   void doSomething() {
     if (_isDisposed) {
-      throw Exception('Объект уже уничтожен и не может быть использован.');
+      throw Exception("Object has been destroyed and can't be used");
     }
-    print('Работаю с данными: $_data');
+    print('do with data: $_data');
   }
 
   void inc() {
@@ -74,25 +73,8 @@ void testDisposableObject() {
     obj.dec();
     obj.inc();
   } catch (e) {
-    print(e); // Объект уже уничтожен
+    print(e); // Object already deleted
     obj = null;
-    print ("is null");
+    print("is null");
   }
-
-
-  // obj.doSomething(); // Работает нормально
-  // obj.checkAndDisposeIfNeeded(false); // Условие не выполнено
-  // obj.checkAndDisposeIfNeeded(true); // Условие выполнено, вызываем dispose
-  //
-  // // Теперь попробуем использовать объект
-  // try {
-  //   obj.doSomething(); // Выбросит исключение
-  // } catch (e) {
-  //   print(e); // Объект уже уничтожен
-  //   obj = null;
-  // }
-
-  // Чтобы GC мог собрать объект, удаляем ссылку
-  //obj = null;
-  // Теперь объект может быть собран GC в любой момент
 }
