@@ -3,6 +3,7 @@ import 'xor_cipher.dart';
 import 'primes_generator.dart';
 import 'disposable_object.dart';
 import 'short_uuid.dart';
+import 'find_and_connect.dart';
 
 String run() {
   testXorCipher();
@@ -16,6 +17,6 @@ String run() {
   restoreToitPacket();
   testDisposableObject();
   testShortUuid();
-
+  testFindAndConnect();
   return "ok";
 }
